@@ -16,7 +16,7 @@ public:
 
 private:
     static MprpcConfig m_config;
-    MprpcApplication(){}
+    MprpcApplication() = default;
     MprpcApplication(const MprpcApplication &) = delete;
     MprpcApplication(MprpcApplication &&) = delete;
 };

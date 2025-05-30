@@ -16,7 +16,7 @@ public:
     void Log(std::string msg, LogLevel = INFO);
 
 private:
-    LockQuene<std::pair<LogLevel, std::string>> m_quene;
+    LockQuene<std::pair<LogLevel, std::string>> m_quene;//缓冲区
     Logger();
     Logger(const Logger &) = delete;
     Logger(Logger &&) = delete;

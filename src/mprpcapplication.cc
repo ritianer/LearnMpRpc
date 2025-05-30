@@ -26,7 +26,7 @@ void MprpcApplication::init(int argc,char** argv)
 
     int c=0;
     std::string config_file;
-    while((c=getopt(argc,argv,"i:"))!=-1)
+    while((c=getopt(argc,argv,"i:"))!=-1)//获取输入参数
     {
         switch(c)
         {
@@ -43,7 +43,7 @@ void MprpcApplication::init(int argc,char** argv)
             break;
         }
     }
-    m_config.LoadConfigFile(config_file.c_str());
+    m_config.LoadConfigFile(config_file.c_str());//加载配置文件
     std::cout << "rpcserverip:" << m_config.Load("rpcserverip") << std::endl;
     std::cout << "rpcserverport:" << m_config.Load("rpcserverport") << std::endl;
     std::cout << "zookeeperip:" << m_config.Load("zookeeperip") << std::endl;

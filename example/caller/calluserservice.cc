@@ -2,7 +2,7 @@
 #include "user.pb.h"
 #include "mprpcapplication.h"
 
-
+//login 回调函数
 void login_complete(fixbug::LoginResponse &response)
 {
     auto result = response.result();
@@ -13,13 +13,18 @@ void login_complete(fixbug::LoginResponse &response)
 }
 int main(int argc,char** argv)
 {
-    MprpcApplication::init(argc, argv);
-    fixbug::UserServiceRpc_Stub stub(new MpRpcChannel());
+    MprpcApplication::init(argc, argv);//初始化框架 读取配置文件
+
+    fixbug::UserServiceRpc_Stub stub(new MpRpcChannel());//？
+
+    //设置请求
     fixbug::LoginRequest request;
     request.set_name("zhansan");
     request.set_pwd("123456");
     fixbug::LoginResponse response;
     google::protobuf::Closure *callback = google::protobuf::NewCallback<fixbug::LoginResponse &>(&login_complete, response);
+    
+    //远程调用
     stub.Login(nullptr, &request, &response, callback);
 
     fixbug::RegisterRequest request2;

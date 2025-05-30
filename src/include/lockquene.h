@@ -19,7 +19,7 @@ public:
         std::unique_lock<std::mutex> lock(m_mutex);
         while(m_quene.empty())
         {
-            m_condvar.wait(lock);
+            m_condvar.wait(lock); // 阻塞等待pop线程notify_one
         }
         T data = m_quene.front();
         m_quene.pop();
